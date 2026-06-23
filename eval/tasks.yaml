@@ -1,0 +1,44 @@
+# Evaluation suite (config-driven). Each task runs the agent then asserts
+# execution-based expectations. `adp eval` exits non-zero if any task fails.
+#
+# Task fields:
+#   id        unique id
+#   task      natural-language task given to the agent
+#   ingest    list of sample dataset names to ingest (paths resolved by harness)
+#   ingest_raw explicit [{path, name}] (e.g. to test failure handling)
+#   panel     {name, keys}            -> build_panel hint
+#   validate  {name, min_rows, ...}   -> validate_dataset hint
+#   expect    assertions (see below)
+#
+# Expectation keys:
+#   status: success|failed
+#   catalog_has: [names]
+#   dataset_exists: name
+#   min_rows: {dataset, n}
+#   lineage_min_inputs: {dataset, n}
+#   validate_passed: name
+
+- id: ingest_sources
+  task: "Ingest the three economic data sources and register them."
+  ingest: [fema_policies, property_sales, hmda_loans]
+  expect:
+    status: success
+    catalog_has: [fema_policies, property_sales, hmda_loans]
+
+- id: build_and_validate_panel
+  task: "Integrate the sources into a county-quarter panel and validate it."
+  ingest: [fema_policies, property_sales, hmda_loans]
+  panel: {name: county_quarter_panel, keys: [county, quarter]}
+  validate: {name: county_quarter_panel, min_rows: 100, unique_key: [county, quarter]}
+  expect:
+    status: success
+    dataset_exists: county_quarter_panel
+    min_rows: {dataset: county_quarter_panel, n: 200}
+    lineage_min_inputs: {dataset: county_quarter_panel, n: 3}
+    validate_passed: county_quarter_panel
+
+- id: missing_source_is_graceful
+  task: "Ingest a file that does not exist."
+  ingest_raw: [{path: "data/samples/__does_not_exist__.csv", name: ghost}]
+  expect:
+    status: failed

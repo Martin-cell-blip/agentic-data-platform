@@ -1,0 +1,37 @@
+[project]
+name = "agentic-data-platform"
+version = "0.1.0"
+description = "An LLM-agent-driven data platform: ingest, transform, validate, and serve heterogeneous datasets with task decomposition, tool calling, memory, retry, evaluation, and monitoring."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Zhunming Ma" }]
+license = { text = "MIT" }
+dependencies = [
+    "duckdb>=1.1",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "httpx>=0.27",
+    "pyyaml>=6.0",
+    "anthropic>=0.40",
+    "pandas>=2.2",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+adp = "adp.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["adp"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
