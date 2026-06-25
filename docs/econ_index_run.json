@@ -1,0 +1,108 @@
+{
+ "n": 150,
+ "model": "qwen2.5:7b",
+ "source": "WildChat-1M (allenai/WildChat-1M, ODC-BY)",
+ "backend_counts": {
+  "ollama": 150
+ },
+ "automation_overall": 0.313,
+ "validation": {
+  "spearman": 0.318,
+  "top5_overlap": 3,
+  "computed_top5": [
+   "Writing & Content",
+   "Software & IT",
+   "Data & Analysis",
+   "Personal & Other",
+   "Finance & Accounting"
+  ],
+  "reference_top5": [
+   "Software & IT",
+   "Writing & Content",
+   "Data & Analysis",
+   "Education & Tutoring",
+   "Marketing & Sales"
+  ]
+ },
+ "seconds": 429.1,
+ "by_occupation": [
+  {
+   "occupation": "Writing & Content",
+   "share": 0.3067,
+   "automation_share": 0.239,
+   "n": 46
+  },
+  {
+   "occupation": "Software & IT",
+   "share": 0.2133,
+   "automation_share": 0.781,
+   "n": 32
+  },
+  {
+   "occupation": "Data & Analysis",
+   "share": 0.1867,
+   "automation_share": 0.214,
+   "n": 28
+  },
+  {
+   "occupation": "Personal & Other",
+   "share": 0.0933,
+   "automation_share": 0.143,
+   "n": 14
+  },
+  {
+   "occupation": "Finance & Accounting",
+   "share": 0.06,
+   "automation_share": 0.222,
+   "n": 9
+  },
+  {
+   "occupation": "Translation & Languages",
+   "share": 0.0467,
+   "automation_share": 0.143,
+   "n": 7
+  },
+  {
+   "occupation": "Science & Research",
+   "share": 0.0267,
+   "automation_share": 0.0,
+   "n": 4
+  },
+  {
+   "occupation": "Marketing & Sales",
+   "share": 0.0133,
+   "automation_share": 0.0,
+   "n": 2
+  },
+  {
+   "occupation": "Legal",
+   "share": 0.0133,
+   "automation_share": 0.0,
+   "n": 2
+  },
+  {
+   "occupation": "Healthcare & Wellness",
+   "share": 0.0133,
+   "automation_share": 0.0,
+   "n": 2
+  },
+  {
+   "occupation": "Design & Creative",
+   "share": 0.0133,
+   "automation_share": 0.0,
+   "n": 2
+  },
+  {
+   "occupation": "Education & Tutoring",
+   "share": 0.0067,
+   "automation_share": 0.0,
+   "n": 1
+  },
+  {
+   "occupation": "Management & Business Ops",
+   "share": 0.0067,
+   "automation_share": 0.0,
+   "n": 1
+  }
+ ]
+}

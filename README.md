@@ -81,8 +81,14 @@ The classifier is **pluggable**, so you choose the cost/quality trade-off:
 
 > **Verified run:** 150 real conversations from **WildChat-1M**, classified locally with
 > `qwen2.5:7b` (0 fallbacks), produced a usage distribution led by **writing, software and data
-> analysis** — matching the published Economic Index shape. See [`adp/econ/README.md`](adp/econ/README.md)
-> for scaling to the full corpus and O*NET taxonomy.
+> analysis** — matching the published Economic Index shape.
+
+<div align="center">
+<img src="docs/econ_index.svg" alt="AI usage by occupation" width="88%" />
+</div>
+
+📄 **Full write-up** — method, validation (Spearman ρ), and honest limitations: **[docs/findings.md](docs/findings.md)**.
+Scaling to the full corpus + O*NET taxonomy: [`adp/econ/README.md`](adp/econ/README.md).
 
 ## 🧱 Transforms: dbt + portable warehouses
 

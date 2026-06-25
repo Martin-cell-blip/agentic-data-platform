@@ -17,6 +17,9 @@ uv run adp econ                                  # free, offline (heuristic clas
 ADP_ECON_CLASSIFIER=ollama uv run adp econ --n 500   # local LLM (free, uses your GPU)
 ```
 
+📄 A write-up of a real run (WildChat-1M + local `qwen2.5:7b`) with a chart, validation and
+limitations is in [`docs/findings.md`](../../docs/findings.md).
+
 ## Files
 
 | file | role |
