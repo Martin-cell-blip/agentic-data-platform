@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 250" width="880" height="250"
      font-family="-apple-system, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif">
   <defs>
     <!-- Apple-Intelligence-style aurora, tiled + translated for a seamless shimmer sweep -->
@@ -11,70 +11,74 @@
       <animateTransform attributeName="gradientTransform" type="translate"
                         from="0 0" to="300 0" dur="6s" repeatCount="indefinite"/>
     </linearGradient>
-
+    <linearGradient id="ring" gradientUnits="userSpaceOnUse" x1="392" y1="124" x2="488" y2="216">
+      <stop offset="0" stop-color="#AF52DE"/>
+      <stop offset="0.5" stop-color="#0A84FF"/>
+      <stop offset="1" stop-color="#5AC8FA"/>
+    </linearGradient>
     <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0"   stop-color="#AF52DE" stop-opacity="0.55"/>
-      <stop offset="0.45" stop-color="#0A84FF" stop-opacity="0.30"/>
-      <stop offset="1"   stop-color="#0A84FF" stop-opacity="0"/>
+      <stop offset="0"    stop-color="#AF52DE" stop-opacity="0.5"/>
+      <stop offset="0.5"  stop-color="#0A84FF" stop-opacity="0.28"/>
+      <stop offset="1"    stop-color="#0A84FF" stop-opacity="0"/>
     </radialGradient>
-
-    <radialGradient id="comet" cx="0.5" cy="0.5" r="0.5">
+    <radialGradient id="spark" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#0A84FF" stop-opacity="0.9"/>
       <stop offset="1" stop-color="#0A84FF" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <rect x="0" y="0" width="880" height="240" rx="18" fill="#ffffff"/>
+  <rect x="0" y="0" width="880" height="250" rx="18" fill="#ffffff"/>
 
-  <!-- soft aurora glow that gently breathes behind the title -->
-  <ellipse cx="440" cy="92" rx="300" ry="78" fill="url(#glow)" opacity="0.16">
-    <animate attributeName="opacity" values="0.10;0.22;0.10" keyTimes="0;0.5;1" dur="5s"
+  <!-- breathing aurora glow behind the title -->
+  <ellipse cx="440" cy="58" rx="300" ry="56" fill="url(#glow)" opacity="0.16">
+    <animate attributeName="opacity" values="0.10;0.20;0.10" keyTimes="0;0.5;1" dur="5s"
              calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1" repeatCount="indefinite"/>
-    <animateTransform attributeName="transform" type="scale" additive="sum"
-                      values="1 1;1.05 1.08;1 1" keyTimes="0;0.5;1" dur="5s"
-                      calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
-                      repeatCount="indefinite"/>
   </ellipse>
 
-  <!-- title with the shimmering aurora fill -->
-  <text x="440" y="104" text-anchor="middle" font-size="46" font-weight="600"
+  <!-- title with shimmering aurora fill -->
+  <text x="440" y="56" text-anchor="middle" font-size="38" font-weight="600"
         letter-spacing="-1" fill="url(#aurora)">Agentic Data Platform</text>
-
-  <!-- tagline (Apple secondary grey) -->
-  <text x="440" y="136" text-anchor="middle" font-size="15.5" font-weight="400" fill="#6e6e73">
+  <text x="440" y="84" text-anchor="middle" font-size="14.5" font-weight="400" fill="#6e6e73">
     An LLM agent that ingests, transforms, validates &amp; serves data
   </text>
 
-  <!-- minimal pipeline line -->
-  <line x1="150" y1="180" x2="730" y2="180" stroke="#d2d2d7" stroke-width="1.5"/>
+  <!-- ===== the agent LOOP (not a linear pipeline) ===== -->
+  <!-- inbound: raw sources -> agent -->
+  <text x="78" y="170" text-anchor="middle" font-size="11.5" fill="#6e6e73">raw</text>
+  <text x="78" y="184" text-anchor="middle" font-size="11.5" fill="#6e6e73">sources</text>
+  <g fill="#c7c7cc"><circle cx="118" cy="150" r="3"/><circle cx="118" cy="170" r="3"/><circle cx="118" cy="190" r="3"/></g>
+  <line x1="132" y1="170" x2="392" y2="170" stroke="#e3e3e8" stroke-width="1.5"/>
+  <circle r="4" fill="#0A84FF"><animateMotion path="M132,170 H392" dur="1.9s" repeatCount="indefinite"
+        calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/></circle>
 
-  <!-- stage markers + labels -->
-  <g fill="#86868b">
-    <circle cx="150" cy="180" r="3.5"/><circle cx="295" cy="180" r="3.5"/>
-    <circle cx="440" cy="180" r="3.5"/><circle cx="585" cy="180" r="3.5"/>
-    <circle cx="730" cy="180" r="3.5"/>
-  </g>
-  <g text-anchor="middle" font-size="11.5" font-weight="500" fill="#6e6e73">
-    <text x="150" y="202">Ingest</text>
-    <text x="295" y="202">Classify</text>
-    <text x="440" y="202">dbt</text>
-    <text x="585" y="202">Warehouse</text>
-    <text x="730" y="202">Serve</text>
-  </g>
+  <!-- outbound: agent -> served data / API -->
+  <line x1="488" y1="170" x2="742" y2="170" stroke="#e3e3e8" stroke-width="1.5"/>
+  <circle r="4" fill="#5AC8FA"><animateMotion path="M488,170 H742" dur="1.9s" begin="0.4s" repeatCount="indefinite"
+        calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/></circle>
+  <text x="792" y="166" text-anchor="middle" font-size="11.5" fill="#6e6e73">served data</text>
+  <text x="792" y="180" text-anchor="middle" font-size="11.5" fill="#6e6e73">· API ·</text>
 
-  <!-- a single smooth comet of light gliding along the pipeline (eased, looping) -->
-  <circle r="14" fill="url(#comet)">
-    <animateMotion path="M150,180 H730" dur="3.4s" calcMode="spline" keyTimes="0;1"
-                   keySplines="0.4 0 0.2 1" repeatCount="indefinite"/>
+  <!-- the loop ring + orbiting comet -->
+  <circle cx="440" cy="170" r="46" fill="none" stroke="#e6e6eb" stroke-width="2"/>
+  <circle cx="440" cy="170" r="46" fill="none" stroke="url(#ring)" stroke-width="2.5"
+          stroke-linecap="round" stroke-dasharray="150 140" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" from="0 440 170" to="360 440 170"
+                      dur="3.6s" repeatCount="indefinite"/>
   </circle>
-  <circle r="4" fill="#0A84FF">
-    <animateMotion path="M150,180 H730" dur="3.4s" calcMode="spline" keyTimes="0;1"
-                   keySplines="0.4 0 0.2 1" repeatCount="indefinite"/>
-    <animate attributeName="fill" values="#0A84FF;#AF52DE;#5AC8FA;#0A84FF" dur="3.4s" repeatCount="indefinite"/>
+  <!-- orbiting spark (the loop) -->
+  <circle r="11" fill="url(#spark)">
+    <animateMotion path="M440,124 A46,46 0 1,1 440,216 A46,46 0 1,1 440,124" dur="3.6s" repeatCount="indefinite"/>
   </circle>
+  <circle r="4.5" fill="#0A84FF">
+    <animateMotion path="M440,124 A46,46 0 1,1 440,216 A46,46 0 1,1 440,124" dur="3.6s" repeatCount="indefinite"/>
+    <animate attributeName="fill" values="#AF52DE;#0A84FF;#5AC8FA;#AF52DE" dur="3.6s" repeatCount="indefinite"/>
+  </circle>
+  <text x="440" y="167" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1d1f">Agent</text>
+  <text x="440" y="182" text-anchor="middle" font-size="9" font-weight="500" fill="#86868b">loop</text>
 
-  <!-- production-concern caption (Apple tertiary grey) -->
-  <text x="440" y="226" text-anchor="middle" font-size="11" font-weight="400" fill="#a1a1a6">
-    task decomposition · tool calling · memory · retry · evaluation · monitoring
+  <!-- the cycle + honesty caption -->
+  <text x="440" y="238" text-anchor="middle" font-size="12" font-weight="500" fill="#6e6e73">
+    plan → execute → observe
+    <tspan fill="#a1a1a6" font-weight="400">  ·  fans out to typed tools  ·  retries &amp; self-repairs</tspan>
   </text>
 </svg>
