@@ -1,54 +1,80 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240"
+     font-family="-apple-system, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#eef3f7"/>
+    <!-- Apple-Intelligence-style aurora, tiled + translated for a seamless shimmer sweep -->
+    <linearGradient id="aurora" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="0" spreadMethod="repeat">
+      <stop offset="0"    stop-color="#FF2D55"/>
+      <stop offset="0.25" stop-color="#AF52DE"/>
+      <stop offset="0.5"  stop-color="#0A84FF"/>
+      <stop offset="0.75" stop-color="#5AC8FA"/>
+      <stop offset="1"    stop-color="#FF2D55"/>
+      <animateTransform attributeName="gradientTransform" type="translate"
+                        from="0 0" to="300 0" dur="6s" repeatCount="indefinite"/>
     </linearGradient>
-    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#15324a"/>
-      <stop offset="1" stop-color="#2f6f9f"/>
-    </linearGradient>
+
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"   stop-color="#AF52DE" stop-opacity="0.55"/>
+      <stop offset="0.45" stop-color="#0A84FF" stop-opacity="0.30"/>
+      <stop offset="1"   stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="comet" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0A84FF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#0A84FF" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <rect x="1" y="1" width="878" height="238" rx="16" fill="url(#bg)" stroke="#d7e0ea"/>
+  <rect x="0" y="0" width="880" height="240" rx="18" fill="#ffffff"/>
 
-  <!-- title -->
-  <text x="440" y="74" text-anchor="middle" font-size="38" font-weight="700" fill="url(#title)">Agentic Data Platform</text>
-  <!-- tagline -->
-  <text x="440" y="104" text-anchor="middle" font-size="15" fill="#5f6f7b">An LLM agent that ingests, transforms, validates &amp; serves data</text>
+  <!-- soft aurora glow that gently breathes behind the title -->
+  <ellipse cx="440" cy="92" rx="300" ry="78" fill="url(#glow)" opacity="0.16">
+    <animate attributeName="opacity" values="0.10;0.22;0.10" keyTimes="0;0.5;1" dur="5s"
+             calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="scale" additive="sum"
+                      values="1 1;1.05 1.08;1 1" keyTimes="0;0.5;1" dur="5s"
+                      calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+                      repeatCount="indefinite"/>
+  </ellipse>
 
-  <!-- pipeline connector -->
-  <line x1="120" y1="168" x2="760" y2="168" stroke="#c4d2df" stroke-width="2"/>
+  <!-- title with the shimmering aurora fill -->
+  <text x="440" y="104" text-anchor="middle" font-size="46" font-weight="600"
+        letter-spacing="-1" fill="url(#aurora)">Agentic Data Platform</text>
 
-  <!-- pipeline nodes (accent bar on each pulses in sequence as data passes) -->
-  <g>
-    <rect x="56" y="148" width="128" height="40" rx="9" fill="#ffffff" stroke="#c9d6e2"/>
-    <rect x="56" y="148" width="128" height="3" rx="1.5" fill="#2f6f9f"><animate attributeName="opacity" values="0.25;1;0.25" keyTimes="0;0.5;1" dur="2.6s" begin="0s" repeatCount="indefinite"/></rect>
-    <text x="120" y="173" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1c2c36">Ingest</text>
+  <!-- tagline (Apple secondary grey) -->
+  <text x="440" y="136" text-anchor="middle" font-size="15.5" font-weight="400" fill="#6e6e73">
+    An LLM agent that ingests, transforms, validates &amp; serves data
+  </text>
 
-    <rect x="216" y="148" width="128" height="40" rx="9" fill="#ffffff" stroke="#c9d6e2"/>
-    <rect x="216" y="148" width="128" height="3" rx="1.5" fill="#2f6f9f"><animate attributeName="opacity" values="0.25;1;0.25" keyTimes="0;0.5;1" dur="2.6s" begin="0.52s" repeatCount="indefinite"/></rect>
-    <text x="280" y="173" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1c2c36">Classify · LLM</text>
+  <!-- minimal pipeline line -->
+  <line x1="150" y1="180" x2="730" y2="180" stroke="#d2d2d7" stroke-width="1.5"/>
 
-    <rect x="376" y="148" width="128" height="40" rx="9" fill="#ffffff" stroke="#c9d6e2"/>
-    <rect x="376" y="148" width="128" height="3" rx="1.5" fill="#2f6f9f"><animate attributeName="opacity" values="0.25;1;0.25" keyTimes="0;0.5;1" dur="2.6s" begin="1.04s" repeatCount="indefinite"/></rect>
-    <text x="440" y="173" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1c2c36">dbt transform</text>
-
-    <rect x="536" y="148" width="128" height="40" rx="9" fill="#ffffff" stroke="#c9d6e2"/>
-    <rect x="536" y="148" width="128" height="3" rx="1.5" fill="#2f6f9f"><animate attributeName="opacity" values="0.25;1;0.25" keyTimes="0;0.5;1" dur="2.6s" begin="1.56s" repeatCount="indefinite"/></rect>
-    <text x="600" y="173" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1c2c36">Warehouse</text>
-
-    <rect x="696" y="148" width="128" height="40" rx="9" fill="#ffffff" stroke="#c9d6e2"/>
-    <rect x="696" y="148" width="128" height="3" rx="1.5" fill="#2f6f9f"><animate attributeName="opacity" values="0.25;1;0.25" keyTimes="0;0.5;1" dur="2.6s" begin="2.08s" repeatCount="indefinite"/></rect>
-    <text x="760" y="173" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1c2c36">Serve · API</text>
+  <!-- stage markers + labels -->
+  <g fill="#86868b">
+    <circle cx="150" cy="180" r="3.5"/><circle cx="295" cy="180" r="3.5"/>
+    <circle cx="440" cy="180" r="3.5"/><circle cx="585" cy="180" r="3.5"/>
+    <circle cx="730" cy="180" r="3.5"/>
+  </g>
+  <g text-anchor="middle" font-size="11.5" font-weight="500" fill="#6e6e73">
+    <text x="150" y="202">Ingest</text>
+    <text x="295" y="202">Classify</text>
+    <text x="440" y="202">dbt</text>
+    <text x="585" y="202">Warehouse</text>
+    <text x="730" y="202">Serve</text>
   </g>
 
-  <!-- flowing data packets along the pipeline (loop forever) -->
-  <circle r="9" fill="#2f6f9f" opacity="0.18"><animateMotion path="M120,168 H760" dur="2.6s" begin="0s" repeatCount="indefinite"/></circle>
-  <circle r="5" fill="#2f6f9f"><animateMotion path="M120,168 H760" dur="2.6s" begin="0s" repeatCount="indefinite"/></circle>
-  <circle r="5" fill="#15324a"><animateMotion path="M120,168 H760" dur="2.6s" begin="0.87s" repeatCount="indefinite"/></circle>
-  <circle r="5" fill="#5aa0d6"><animateMotion path="M120,168 H760" dur="2.6s" begin="1.74s" repeatCount="indefinite"/></circle>
+  <!-- a single smooth comet of light gliding along the pipeline (eased, looping) -->
+  <circle r="14" fill="url(#comet)">
+    <animateMotion path="M150,180 H730" dur="3.4s" calcMode="spline" keyTimes="0;1"
+                   keySplines="0.4 0 0.2 1" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#0A84FF">
+    <animateMotion path="M150,180 H730" dur="3.4s" calcMode="spline" keyTimes="0;1"
+                   keySplines="0.4 0 0.2 1" repeatCount="indefinite"/>
+    <animate attributeName="fill" values="#0A84FF;#AF52DE;#5AC8FA;#0A84FF" dur="3.4s" repeatCount="indefinite"/>
+  </circle>
 
-  <!-- production-concern caption -->
-  <text x="440" y="222" text-anchor="middle" font-size="11.5" fill="#7a8893">task decomposition · tool calling · memory · retry · evaluation · monitoring</text>
+  <!-- production-concern caption (Apple tertiary grey) -->
+  <text x="440" y="226" text-anchor="middle" font-size="11" font-weight="400" fill="#a1a1a6">
+    task decomposition · tool calling · memory · retry · evaluation · monitoring
+  </text>
 </svg>
